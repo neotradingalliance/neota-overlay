@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEOTA Overlay</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .overlay {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 12px;
+      padding: 20px 30px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+      width: fit-content;
+    }
+    .title {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #00ffff;
+      font-weight: bold;
+    }
+    .line {
+      font-size: 16px;
+      margin: 5px 0;
+    }
+    .profit {
+      color: #00ff6a;
+    }
+    .loss {
+      color: #ff4c4c;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="title">NEOTA LIVE STATS</div>
+    <div class="line">💰 Deposit: <strong>$1000</strong></div>
+    <div class="line">🎯 Monthly Target: <strong>$500</strong></div>
+    <div class="line">📅 Realized Profit This Month: <strong id="profit" class="profit"></strong></div>
+  </div>
+
+  <script>
+    const profitEl = document.getElementById("profit");
+
+    // Manual input — you can change this value
+    let profit = 1000;
+
+    // Apply color based on value
+    const updateColor = () => {
+      const isLoss = profit < 0;
+      profitEl.textContent = (isLoss ? "-" : "+") + "$" + Math.abs(profit).toFixed(2);
+      profitEl.className = isLoss ? "loss" : "profit";
+    };
+
+    updateColor(); // Run once on load
+  </script>
+</body>
+</html>
